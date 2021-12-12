@@ -21,27 +21,3 @@ SELECT location, Date, MaxActiveCasesInDay
 FROM cte 
 WHERE HighestActive = 1 
 ORDER BY MaxActiveCasesInDay DESC;
-
--- death rates
-WITH cte_death AS
-(SELECT  location,
-		max(total_Deaths) as Deaths,
-		max(total_cases) as CovidCases
-FROM INTERVIEW_DB.PLAYGROUND_Prashanth_Reddy.DBT_COVID19
-GROUP BY location)
-SELECT  location, 
-		CAST(Round((Deaths/CovidCases)*100, 2) as nvarchar(10))  AS DeathRate
-FROM cte_death
-ORDER BY DeathRate DESC;
-
--- Recovery  rates
-WITH cte_recovery AS
-(SELECT  location,
-		max(total_recovered) as Recovered,
-		max(total_cases) as CovidCases
-FROM INTERVIEW_DB.PLAYGROUND_Prashanth_Reddy.DBT_COVID19
-GROUP BY location)
-SELECT  location, 
-		CAST(Round((Recovered/CovidCases)*100, 2) as nvarchar(10))  AS RecovereyRate 
-FROM cte_recovery
-ORDER BY RecovereyRate DESC;
