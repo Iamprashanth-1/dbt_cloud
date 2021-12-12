@@ -2,6 +2,9 @@
 version: 2
 
 models:
+    - name: locations_stats
+      description: "A starter dbt model"
+      
     - name: my_first_dbt_model
       description: "A starter dbt model"
       columns:
@@ -10,7 +13,6 @@ models:
             tests:
                 - unique
                 - not_null
-
     - name: my_second_dbt_model
       description: "A starter dbt model"
       columns:
@@ -19,3 +21,6 @@ models:
             tests:
                 - unique
                 - not_null
+
+
+    
